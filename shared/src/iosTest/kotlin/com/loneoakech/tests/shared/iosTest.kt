@@ -1,5 +1,6 @@
 package com.loneoakech.tests.shared
 
+import com.loneoaktech.tests.shared.Greeting
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

@@ -2,7 +2,7 @@ package com.loneoakech.tests.androidApp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.loneoakech.tests.shared.Greeting
+import com.loneoaktech.tests.shared.Greeting
 import android.widget.TextView
 
 fun greet(): String {

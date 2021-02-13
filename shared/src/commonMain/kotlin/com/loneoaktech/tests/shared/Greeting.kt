@@ -1,4 +1,6 @@
-package com.loneoakech.tests.shared
+package com.loneoaktech.tests.shared
+
+import Platform
 
 
 class Greeting {

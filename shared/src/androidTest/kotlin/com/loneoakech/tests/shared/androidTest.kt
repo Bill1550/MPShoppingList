@@ -1,5 +1,6 @@
 package com.loneoakech.tests.shared
 
+import com.loneoaktech.tests.shared.Greeting
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
