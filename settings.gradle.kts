@@ -10,6 +10,4 @@
 rootProject.name = "MPShoppingList"
 
 
-include(":androidApp")
-include(":shared")
-include(":server")
+include("androidApp", "server", "backend", "shared" )
