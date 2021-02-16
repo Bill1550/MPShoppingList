@@ -17,11 +17,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Versions.compileSdk)
     defaultConfig {
         applicationId = "com.loneoakech.tests.androidApp"
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(Versions.minSdk)
+        targetSdkVersion(Versions.targetSdk)
         versionCode = 1
         versionName = "1.0"
     }

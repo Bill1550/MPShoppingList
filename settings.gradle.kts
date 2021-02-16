@@ -9,5 +9,5 @@
 //}
 rootProject.name = "MPShoppingList"
 
-
-include("androidApp", "server", "backend", "shared" )
+enableFeaturePreview("GRADLE_METADATA")
+include( "androidApp", "backend", "shared" )

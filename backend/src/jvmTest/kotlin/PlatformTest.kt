@@ -1,5 +1,5 @@
 import com.loneoaktech.tests.shared.PlatformInfo
-import org.junit.Test
+import kotlin.test.Test
 
 /**
  * Created by BillH on 2/12/2021
@@ -7,7 +7,7 @@ import org.junit.Test
 class PlatformTest {
 
     @Test
-    fun printPlaformName() {
+    fun printPlatformName() {
         println("-----> The platform is ${PlatformInfo.name}")
     }
 }
