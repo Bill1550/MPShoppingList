@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.4.30"
+    kotlin("jvm") version( "1.4.30" )
 }
 
 repositories {
@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-//    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 val compileKotlin: KotlinCompile by tasks
