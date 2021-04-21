@@ -3,7 +3,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
-//    id("kotlin-android-extensions")
+    id("kotlin-parcelize")
+    id( "org.jetbrains.kotlin.plugin.serialization" ) version (Versions.Kotlin.main)
 }
 
 group = "com.loneoakech.tests.shared"
@@ -33,7 +34,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation( "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2" )
+                api( "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Kotlin.coroutines}" )
+                api("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.Kotlin.serialization}" )
             }
         }
 
