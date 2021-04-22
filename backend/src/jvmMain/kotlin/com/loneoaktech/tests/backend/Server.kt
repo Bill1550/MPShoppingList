@@ -4,6 +4,7 @@ import com.loneoaktech.tests.shared.domain.model.ShoppingListItem
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
+import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
@@ -12,8 +13,7 @@ import kotlinx.serialization.json.Json
 
 fun main(args: Array<String>) = io.ktor.server.netty.EngineMain.main(args)
 
-@Serializable
-data class TestBean( val id: String, val num: Int )
+
 
 fun Application.module( testing: Boolean = false ) {
 
@@ -38,13 +38,20 @@ fun Application.module( testing: Boolean = false ) {
             )
         }
 
-        get ( "/api/list" ) {
-            call.respond(
-                listOf(
-                    ShoppingListItem("stuff", 42, "get the good ones"),
-                    ShoppingListItem( "other stuff", 2, "get the cheep ones")
+        route("/api") {
+            get("/list") {
+                call.respond(
+                    listOf(
+                        ShoppingListItem("stuff", 42, "get the good ones"),
+                        ShoppingListItem("other stuff", 2, "get the cheep ones")
+                    )
                 )
-            )
+            }
+
+            post( "/add" ) {
+                println( call.receive<ShoppingListItem>() )
+                call.respond(HttpStatusCode.OK)
+            }
         }
     }
 }
