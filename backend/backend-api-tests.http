@@ -10,7 +10,8 @@ Content-Type: application/json
 {
   "name": "Stuff",
   "quantity": 2,
-  "description": "Something that we need."
+  "description": "the good stuff",
+  "id": "{{$uuid}}"
 }
 
 ###

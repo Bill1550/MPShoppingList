@@ -67,6 +67,7 @@ kotlin {
                 implementation( "io.ktor:ktor-serialization:1.4.0")
                 implementation("io.ktor:ktor-html-builder:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+                implementation( "ch.qos.logback:logback-classic:1.2.3" )
             }
         }
         val jvmTest by getting {

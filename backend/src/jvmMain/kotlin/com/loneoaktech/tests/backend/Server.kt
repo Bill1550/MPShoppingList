@@ -22,6 +22,8 @@ fun Application.module( testing: Boolean = false ) {
             Json {
                 encodeDefaults = true
                 prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
             }
         )
     }
