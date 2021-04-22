@@ -2,12 +2,11 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
+    kotlin( "plugin.serialization" ) version (Versions.Kotlin.main)
     id("com.android.library")
-    id("kotlin-parcelize")
-    id( "org.jetbrains.kotlin.plugin.serialization" ) version (Versions.Kotlin.main)
 }
 
-group = "com.loneoakech.tests.shared"
+group = "com.loneoaktech.tests.shared"
 version = "1.0-SNAPSHOT"
 
 kotlin {
@@ -61,7 +60,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-server-netty:1.4.0")
+//                implementation("io.ktor:ktor-server-netty:1.4.0")
             }
         }
 

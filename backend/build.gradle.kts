@@ -2,10 +2,11 @@ import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
 
 plugins {
     kotlin("multiplatform")
+    id( "org.jetbrains.kotlin.plugin.serialization" ) version (Versions.Kotlin.main)
     application
 }
 
-group = "com.loneoakech.tests"
+group = "com.loneoaktech.tests"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -25,30 +26,31 @@ kotlin {
         testRuns["test"].executionTask.configure {
             useJUnit()
         }
-//        withJava()
+        withJava()
     }
-    js(LEGACY) {
-        browser {
-            binaries.executable()
-            webpackTask {
-                cssSupport.enabled = true
-            }
-            runTask {
-                cssSupport.enabled = true
-            }
-            testTask {
-                useKarma {
-                    useChromeHeadless()
-                    webpackConfig.cssSupport.enabled = true
-                }
-            }
-        }
-    }
+
+//    js(LEGACY) {
+//        browser {
+//            binaries.executable()
+//            webpackTask {
+//                cssSupport.enabled = true
+//            }
+//            runTask {
+//                cssSupport.enabled = true
+//            }
+//            testTask {
+//                useKarma {
+//                    useChromeHeadless()
+//                    webpackConfig.cssSupport.enabled = true
+//                }
+//            }
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-//                implementation( project(":shared") )
+                implementation( project(":shared") )
             }
         }
         val commonTest by getting {
@@ -60,7 +62,9 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation( project(":shared") )
+                implementation("io.ktor:ktor-server-core:1.4.0")
                 implementation("io.ktor:ktor-server-netty:1.4.0")
+                implementation( "io.ktor:ktor-serialization:1.4.0")
                 implementation("io.ktor:ktor-html-builder:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
             }
@@ -70,33 +74,34 @@ kotlin {
                 implementation(kotlin("test-junit"))
             }
         }
-        val jsMain by getting {
-            dependencies {
-                implementation("org.jetbrains:kotlin-react:16.13.1-pre.113-kotlin-1.4.0")
-                implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.113-kotlin-1.4.0")
-            }
-        }
-        val jsTest by getting {
-            dependencies {
-                implementation(kotlin("test-js"))
-            }
-        }
+
+//        val jsMain by getting {
+//            dependencies {
+//                implementation("org.jetbrains:kotlin-react:16.13.1-pre.113-kotlin-1.4.0")
+//                implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.113-kotlin-1.4.0")
+//            }
+//        }
+//        val jsTest by getting {
+//            dependencies {
+//                implementation(kotlin("test-js"))
+//            }
+//        }
     }
 }
 
 application {
-    mainClassName = "ServerKt"
+    mainClassName = "com.loneoaktech.tests.backend.ServerKt"
 }
 
-tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack") {
-    outputFileName = "output.js"
-}
+//tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack") {
+//    outputFileName = "output.js"
+//}
 
-tasks.getByName<Jar>("jvmJar") {
-    dependsOn(tasks.getByName("jsBrowserProductionWebpack"))
-    val jsBrowserProductionWebpack = tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack")
-    from(File(jsBrowserProductionWebpack.destinationDirectory, jsBrowserProductionWebpack.outputFileName))
-}
+//tasks.getByName<Jar>("jvmJar") {
+//    dependsOn(tasks.getByName("jsBrowserProductionWebpack"))
+////    val jsBrowserProductionWebpack = tasks.getByName<KotlinWebpack>("jsBrowserProductionWebpack")
+////    from(File(jsBrowserProductionWebpack.destinationDirectory, jsBrowserProductionWebpack.outputFileName))
+//}
 
 tasks.getByName<JavaExec>("run") {
     dependsOn(tasks.getByName<Jar>("jvmJar"))
