@@ -1,6 +1,7 @@
 package com.loneoaktech.tests.backend
 
 import com.loneoaktech.tests.shared.domain.model.ShoppingListItem
+import com.loneoaktech.utilities.GenericItem
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
@@ -53,6 +54,12 @@ fun Application.module( testing: Boolean = false ) {
             post( "/add" ) {
                 println( call.receive<ShoppingListItem>() )
                 call.respond(HttpStatusCode.OK)
+            }
+
+            get( "/item" ) {
+                call.respond(
+                    GenericItem( 123, "Generic", "They are all the same")
+                )
             }
         }
     }

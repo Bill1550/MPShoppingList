@@ -1,4 +1,6 @@
 import com.loneoaktech.tests.shared.domain.model.ShoppingListItem
+import com.loneoaktech.utilities.GenericItem
+import com.quip.astor.android.brushlib.utility.summary
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -49,5 +51,27 @@ class SharedLibTest {
         val bean1json = json.encodeToString( TestBean.serializer(), bean1)
         println(bean1json)
 
+    }
+
+    @Test
+    fun throwableExtensionTest() {
+
+        val t = IllegalStateException("A test error")
+
+        println("Our exception: ${t.summary()}")
+
+    }
+
+    @Test
+    fun serializableObjectTest() {
+        val gi = GenericItem(
+            id = 12345,
+            name = "item1",
+            description = "the thing"
+        )
+
+        val formatter = Json { prettyPrint = true }
+
+        println( formatter.encodeToString( GenericItem.serializer(), gi) )
     }
 }
