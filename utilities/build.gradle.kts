@@ -22,6 +22,14 @@ kotlin {
 //        withJava()
     }
 
+    ios {
+        binaries {
+            framework {
+                baseName = "shared"
+            }
+        }
+    }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -58,6 +66,10 @@ kotlin {
                 implementation(kotlin("test-junit"))
             }
         }
+
+        val iosMain by getting
+        val iosTest by getting
+
     }
 }
 
